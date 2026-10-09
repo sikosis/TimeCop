@@ -8,7 +8,7 @@ buildenv:
 	echo "...done!"
 	
 daemon: buildenv
-	echo "Building the damon..."
+	echo "Building the daemon..."
 	g++ src/TimeCop_daemon.cpp src/myLogfile.cpp -lbe -o bin/TimeCop_daemon
 	rc src/TimeCop_daemon.rdef -o TimeCop_daemon.rsrc
 	xres TimeCop_daemon.rsrc -o bin/TimeCop_daemon
@@ -23,4 +23,4 @@ app: buildenv
 	echo "...done!"
 	
 clean:
-	rm ./obj/* ./bin/*
+	rm -f ./obj/* ./bin/*

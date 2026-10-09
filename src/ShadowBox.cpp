@@ -4,14 +4,13 @@
 // das Textobjekt hängt am unteren Rand der Box!
 
 #include "ShadowBox.h"
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 //=======================================================================================
 // We define here the Rectangular, which is exactly one Box.
 //
-	myShadowBox::myShadowBox(BRect rect, char *name, char *titel, uint32 resizingMode, uint32 flags)
+	myShadowBox::myShadowBox(BRect rect, const char *name, const char *titel, uint32 resizingMode, uint32 flags)
 	   	   : BView(rect, name, resizingMode, flags)
 {
 	wert = 0;

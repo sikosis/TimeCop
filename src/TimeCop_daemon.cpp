@@ -21,7 +21,7 @@ public:
 	bool	QuitRequested(void);
 };
 
-main (void)
+int main (void)
 {
 	SeebaerDaemon	*myD;
 	

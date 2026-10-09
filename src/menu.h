@@ -10,7 +10,7 @@
 class SeebaerMenuBar : public BMenuBar {
 
 public:
-			SeebaerMenuBar(BRect rect, char *titel);
+			SeebaerMenuBar(BRect rect, const char *titel);
 };
 
 #endif

@@ -20,7 +20,7 @@ private:
 	BPoint		textStartPoint;		// the startingPoint where the Text should start
 	
 public:
-				myShadowBox(BRect frame, char *name, char *titel, uint32 resizingMode = B_FOLLOW_LEFT | B_FOLLOW_TOP, uint32 flags = B_WILL_DRAW); 
+				myShadowBox(BRect frame, const char *name, const char *titel, uint32 resizingMode = B_FOLLOW_LEFT | B_FOLLOW_TOP, uint32 flags = B_WILL_DRAW); 
 				~myShadowBox(void);
 virtual	void	Draw(BRect updateRect);
 

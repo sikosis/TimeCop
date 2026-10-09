@@ -36,7 +36,7 @@ public:
 	void			MessageReceived(BMessage* msg);
 };
 
-main (void)
+int main (void)
 {
 	SeebaerApp *myApp;
 

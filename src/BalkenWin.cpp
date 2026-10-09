@@ -10,11 +10,9 @@
 #include "myLogfile.h"
 #include "TimeCop.h"
 
-#include <stdio.h>
-
 /* Das ist der Constructor!	*/
 
-BalkenWin::BalkenWin(BRect frame, char* title, myLogfile *file, int which_win) 
+BalkenWin::BalkenWin(BRect frame, const char* title, myLogfile *file, int which_win) 
 	: BWindow(frame, title, B_TITLED_WINDOW, 0)
 
 {
@@ -95,7 +93,7 @@ StdDownWin::StdDownWin(BRect frame, myLogfile *file)
 {
 	unsigned long index;
 	int i;
-	char *titel[]={"crash","shutdown"};
+	const char *titel[]={"crash","shutdown"};
 	unsigned long divisor[]={1,1}, werte[]={0,0};
 
 	index = 0;
@@ -119,10 +117,8 @@ StdWoWin::StdWoWin(BRect frame, myLogfile *file)
 	int i, weekday;
 	unsigned long wochen[]={1,1,1,1,1,1,1};
 	unsigned long werte[]={0,0,0,0,0,0,0};
-	char *titel[]={"SU", "MO","TU","WE","TH","FR","SA"};
+	const char *titel[]={"SU", "MO","TU","WE","TH","FR","SA"};
 	tm *tim;
-	
-	printf("Start WoWin \n");
 	
 	// Sekunden zählen und den einzelnen Zählern zuordnen!
 	for (index = 0; (tim = file->GetTm(index, &dauer)) != NULL; index++) {
@@ -167,7 +163,7 @@ StdMoWin::StdMoWin(BRect frame, myLogfile *file)
 	int i, index, month, leap;
 	unsigned long werte[12]={0,0,0,0,0,0,0,0,0,0,0,0};
 	unsigned long tage[12]={1,1,1,1,1,1,1,1,1,1,1,1};
-	char *titel[]={"JAN","FEB","MAR","APR","MAI","JUN","JUL","AUG","SEP","OCT","NOV","DEZ"};
+	const char *titel[]={"JAN","FEB","MAR","APR","MAI","JUN","JUL","AUG","SEP","OCT","NOV","DEZ"};
 
 	tm *tim, tim_next;
 	time_t start, ende;
@@ -177,7 +173,6 @@ StdMoWin::StdMoWin(BRect frame, myLogfile *file)
 		{31,29,31,30,31,30,31,31,30,31,30,31}    /* der Tage im Jahr an erster Stelle. Tab 1 = normales Jahr Tab 2 = Schaltjahr  */
 	};
 	
-	printf("Start MoWin \n");
 	tim_next.tm_sec = tim_next.tm_min = tim_next.tm_hour = 0;
 	tim_next.tm_mday = 1;
 
@@ -241,13 +236,11 @@ StdDayWin::StdDayWin(BRect frame, myLogfile *file)
 	int i, now;
 	unsigned long werte[24]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 	unsigned long div[24]  ={1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
-	char *titel[]={"00","01","02","03","04","05","06","07","08","09","10","11",
+	const char *titel[]={"00","01","02","03","04","05","06","07","08","09","10","11",
 					 "12","13","14","15","16","17","18","19","20","21","22","23"};
 	tm *tim;
 	time_t tst;
 	// Sekunden jeweils setzen
-
-	printf("Start DayWin \n");
 
 	for (index = 0; (tim = file->GetTm(index, &dauer)) != NULL; index++) {
 		now = 3600 - (tim->tm_sec + (tim->tm_min * 60) );
@@ -269,7 +262,6 @@ StdDayWin::StdDayWin(BRect frame, myLogfile *file)
 	}
 
 	stdStatView->SetWerte(werte, div, titel);
-	printf("End DayWin \n");
 }
 
 /* Das Fenster für die Anzeige der Zeit pro Stunde an einem Tag!	*/
@@ -281,11 +273,10 @@ AvRunWin::AvRunWin(BRect frame, myLogfile *file)
 	unsigned long index;
 	long dauer;
 	unsigned long werte[12]={0,0,0,0,0,0,0,0,0,0,0,0};
-	char *titel[]={	"<1m", "<5m", "<15m", "<30m", "<1h", "<2h", 
+	const char *titel[]={	"<1m", "<5m", "<15m", "<30m", "<1h", "<2h", 
 					"<6h", "<12h", "<1d", "<3d", "<1w", ">1w"};
 
 	// Laufzeit setzen
-	printf("Start AvRunWin \n");
 
 	for (index = 0; file->GetTm(index, &dauer) != NULL; index++) {
 		if (dauer < 60L) werte[0]++;
@@ -318,8 +309,6 @@ EndlDayWin::EndlDayWin(BRect frame, myLogfile *file)
 	time_t time, start;
 	tm	*tim;
      
-	printf("Start EndlDayWin balkenanzahl:%d\n", balken_anzahl);
-
     if (balken_anzahl > 0) {
 		werte = new unsigned long [ balken_anzahl ];
 		titel = new char * [ balken_anzahl ] ;
@@ -343,7 +332,6 @@ EndlDayWin::EndlDayWin(BRect frame, myLogfile *file)
 				sec = 86400 - (time % 86400);
 				do {
 					if (day >= balken_anzahl) {
-						printf("ERROR: %ld secs left and no day's any more\n", dauer);
 						break;
 					}
 					if (sec > dauer) sec = dauer;
@@ -375,8 +363,6 @@ EndlWeekWin::EndlWeekWin(BRect frame, myLogfile *file)
 	time_t time, start;
 	tm	*tim;
 	
-	printf("Start EndlWeekWin \n");
-
     if (balken_anzahl > 0) {
 		werte = new unsigned long [ balken_anzahl ];
 		titel = new char * [ balken_anzahl ] ;
@@ -405,7 +391,6 @@ EndlWeekWin::EndlWeekWin(BRect frame, myLogfile *file)
 					sec = (86400 * 7) - (time % (86400 * 7));
 					do {
 						if (week >= balken_anzahl) {
-							printf("ERROR: %ld secs left and no week's any more\n", dauer);
 							break;
 						}
 						if (sec > dauer) sec = dauer;

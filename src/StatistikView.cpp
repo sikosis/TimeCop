@@ -12,7 +12,7 @@
 
 // Der Constructor für die Angabe eines Zweidimmensionalen Feldes
 
-StatistikView::StatistikView(BRect rect, char *name, const int x, const int y, int resiceingMode)
+StatistikView::StatistikView(BRect rect, const char *name, const int x, const int y, int resiceingMode)
 	: BView(rect, name, resiceingMode, B_WILL_DRAW | B_FRAME_EVENTS)
 {
 	display = DISPLAY_ORGINAL;
@@ -127,7 +127,7 @@ void StatistikView::Initialise(int neu)
 // wert_div <= 0 veränder den div-Wert nicht
 
 void StatistikView::SetWert(unsigned long wert, unsigned long wert_div, 
-							char *text, const int x, const int y)
+							const char *text, const int x, const int y)
 
 {
 	int i;
@@ -138,7 +138,6 @@ void StatistikView::SetWert(unsigned long wert, unsigned long wert_div,
 	char string[50];
 
 	if (index >= max_index) {
-		printf("ERROR! index %d i bigger then maxindex %d\n", index, max_index);
 		return;
 	}
 
@@ -173,7 +172,7 @@ void StatistikView::SetWert(unsigned long wert, unsigned long wert_div,
 // Eine Funktion um alle Werte zu setzen!
 // Es ist wichtig auch alle Werte zu übergeben!
 
-void StatistikView::SetWerte(unsigned long *wert, unsigned long *wert_div, char **text)
+void StatistikView::SetWerte(unsigned long *wert, unsigned long *wert_div, const char * const *text)
 
 {
 	int i, height;

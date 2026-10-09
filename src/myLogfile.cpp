@@ -14,6 +14,7 @@ myLogfile::myLogfile(void) {
 	path.Append("TimeCop.log");
 	mem = NULL;
 	anzahl = 0L;
+	memset(&log_info, 0, sizeof(log_info));
 }
 
 myLogfile::~myLogfile(void) {
@@ -144,7 +145,6 @@ tm *myLogfile::GetTm(long entry, long *dauer) {
 	
 	entry *= 2;	// Entry verdoppeln, damit es dem Index entspricht!
 	if (entry > anzahl) {
-		printf("return(NULL)\n");
 		return(NULL);	// zu hoch gegriffen?
 	}
 	if (entry == anzahl-1) {				// letzter Eintrag?

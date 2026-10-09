@@ -27,7 +27,7 @@ protected:
 					
 public:
 // Constuructor mit Fenstergröße, Fenstertitel, dem Logfile und der Fensterkennung
-					BalkenWin(BRect frame, char *title, myLogfile *file, int which_win); 
+					BalkenWin(BRect frame, const char *title, myLogfile *file, int which_win); 
 
 // QuitRequested muß nicht überall zur verfügung stehen!
 	bool			QuitRequested(void);

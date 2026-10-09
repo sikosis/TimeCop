@@ -7,7 +7,7 @@
 #include "TimeCop.h"
 #include <AppKit.h>
 
-SeebaerMenuBar::SeebaerMenuBar(BRect rect, char *titel)
+SeebaerMenuBar::SeebaerMenuBar(BRect rect, const char *titel)
 		: BMenuBar(rect, titel)
 
 {
